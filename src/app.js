@@ -1,12 +1,12 @@
 
 // JSX - JavaScript XML
-var obj = {
+const obj = {
     title   : 'Learn React from Udemy Course',
     subtitle: 'By Andrew',
     options : ['One', 'Two']
 }
 
-var template = (
+const template = (
     <div>
         <h1>{ obj.title }</h1>
         { obj.subtitle && <p>{ obj.subtitle }</p> }
@@ -18,15 +18,11 @@ var template = (
     </div>
 );
 
-var userName = 'Indra Arianggi';
-var userAge = 21;
-var userCity = 'Depok';
-var UserState = 'Indonesia';
 
-var user = {
-    name    : 'Candra Kusuma',
-    age     : 20,
-    location: 'Purworejo, Indonesia'
+const user = {
+    name    : 'Indra Arianggi',
+    age     : 21,
+    location: 'Depok, Indonesia'
 };
 
 function getLocation(location) {
@@ -35,7 +31,7 @@ function getLocation(location) {
     }
 }
 
-var templateTwo = (
+const templateTwo = (
     <div>
         <h1>{ user.name ? user.name : 'Anonymous' }</h1>
         { (user.age && user.age >= 18) && <p>Age: {user.age} yo</p> }
@@ -43,6 +39,6 @@ var templateTwo = (
     </div>
 );
 
-var appRoot = document.getElementById('app');
+const appRoot = document.getElementById('app');
 
 ReactDOM.render(template, appRoot);
