@@ -1,40 +1,42 @@
 'use strict';
 
-// arguments object - no longer bound with arrow functions
-var add = function add(a, b) {
-    // console.log(arguments);
-    return a + b;
+// JSX - JavaScript XML
+var obj = {
+    title: 'Learn React from Udemy Course',
+    subtitle: 'By Andrew',
+    options: ['One', 'Two']
 };
-console.log(add(39, 1, 99));
 
-// this keyword - no longer bound with arrow functions
-var user = {
-    name: 'Indra',
-    cities: ['Kediri', 'Yogyakarta', 'Depok'],
-    printPlacesLived: function printPlacesLived() {
-        var _this = this;
+var template = React.createElement(
+    'div',
+    null,
+    React.createElement(
+        'h1',
+        null,
+        obj.title
+    ),
+    obj.subtitle && React.createElement(
+        'p',
+        null,
+        obj.subtitle
+    ),
+    obj.options.length > 1 ? 'Here are your options:' : 'No options!',
+    React.createElement(
+        'ol',
+        null,
+        React.createElement(
+            'li',
+            null,
+            'Item one'
+        ),
+        React.createElement(
+            'li',
+            null,
+            'Item two'
+        )
+    )
+);
 
-        return this.cities.map(function (city) {
-            return _this.name + ' has lived in ' + city;
-        });
+var appRoot = document.getElementById('app');
 
-        // this.cities.forEach((city) => {
-        //     console.log(this.name + ' has lived in ' + city);
-        // })
-    }
-};
-console.log(user.printPlacesLived());
-
-// Challenge
-var multiplier = {
-    numbers: [3, 5, 7, 9, 11, 13, 15, 17],
-    by: 2,
-    multiple: function multiple() {
-        var _this2 = this;
-
-        return this.numbers.map(function (n) {
-            return n * _this2.by;
-        });
-    }
-};
-console.log(multiplier.multiple());
+ReactDOM.render(template, appRoot);
