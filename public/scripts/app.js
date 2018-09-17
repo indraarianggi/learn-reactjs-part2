@@ -1,125 +1,193 @@
-'use strict';
-
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+"use strict";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var IndecisionApp = function (_React$Component) {
+    _inherits(IndecisionApp, _React$Component);
 
-// Super Class
-var Person = function () {
-    function Person() {
-        var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Anonymous';
-        var age = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    function IndecisionApp() {
+        _classCallCheck(this, IndecisionApp);
 
-        _classCallCheck(this, Person);
-
-        this.name = name;
-        this.age = age;
+        return _possibleConstructorReturn(this, (IndecisionApp.__proto__ || Object.getPrototypeOf(IndecisionApp)).apply(this, arguments));
     }
 
-    _createClass(Person, [{
-        key: 'getGreeting',
-        value: function getGreeting() {
-            return 'Hi, I am ' + this.name + '.';
-        }
-    }, {
-        key: 'getDescription',
-        value: function getDescription() {
-            return this.name + ' is ' + this.age + ' year(s) old.';
+    _createClass(IndecisionApp, [{
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "div",
+                null,
+                React.createElement(Header, null),
+                React.createElement(Action, null),
+                React.createElement(Options, null),
+                React.createElement(AddOption, null)
+            );
         }
     }]);
 
-    return Person;
-}();
+    return IndecisionApp;
+}(React.Component);
 
-// Child Class 1
+var Header = function (_React$Component2) {
+    _inherits(Header, _React$Component2);
 
+    function Header() {
+        _classCallCheck(this, Header);
 
-var Student = function (_Person) {
-    _inherits(Student, _Person);
-
-    function Student(name, age, major) {
-        _classCallCheck(this, Student);
-
-        // refer to super class (Person)
-        var _this = _possibleConstructorReturn(this, (Student.__proto__ || Object.getPrototypeOf(Student)).call(this, name, age));
-
-        _this.major = major;
-        return _this;
+        return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
     }
 
-    _createClass(Student, [{
-        key: 'hasMajor',
-        value: function hasMajor() {
-            return !!this.major;
-        }
-    }, {
-        key: 'getDescription',
-        value: function getDescription() {
-            var description = _get(Student.prototype.__proto__ || Object.getPrototypeOf(Student.prototype), 'getDescription', this).call(this); // call function in super class
-
-            if (this.major) {
-                description += ' His/Her major is ' + this.major + '.';
-            }
-
-            return description;
+    _createClass(Header, [{
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "div",
+                null,
+                React.createElement(
+                    "h1",
+                    null,
+                    "Indecision"
+                ),
+                React.createElement(
+                    "h2",
+                    null,
+                    "Put your life in the hands of computer"
+                )
+            );
         }
     }]);
 
-    return Student;
-}(Person);
+    return Header;
+}(React.Component);
 
-// Child Class 2
+var Action = function (_React$Component3) {
+    _inherits(Action, _React$Component3);
 
+    function Action() {
+        _classCallCheck(this, Action);
 
-var Traveler = function (_Person2) {
-    _inherits(Traveler, _Person2);
-
-    function Traveler(name, age, homeLocation) {
-        _classCallCheck(this, Traveler);
-
-        // refer to super class (Person)
-        var _this2 = _possibleConstructorReturn(this, (Traveler.__proto__ || Object.getPrototypeOf(Traveler)).call(this, name, age));
-
-        _this2.homeLocation = homeLocation;
-        return _this2;
+        return _possibleConstructorReturn(this, (Action.__proto__ || Object.getPrototypeOf(Action)).apply(this, arguments));
     }
 
-    _createClass(Traveler, [{
-        key: 'getGreeting',
-        value: function getGreeting() {
-            var greeting = _get(Traveler.prototype.__proto__ || Object.getPrototypeOf(Traveler.prototype), 'getGreeting', this).call(this); // call function in super class
-
-            if (this.homeLocation) {
-                greeting += ' I\'m visiting from ' + this.homeLocation + '.';
-            }
-
-            return greeting;
+    _createClass(Action, [{
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "div",
+                null,
+                React.createElement(
+                    "button",
+                    null,
+                    "What shoulr I do ?"
+                )
+            );
         }
     }]);
 
-    return Traveler;
-}(Person);
+    return Action;
+}(React.Component);
 
-var me = new Person('Indra Arianggi', 22);
-console.log(me.getDescription());
+var Options = function (_React$Component4) {
+    _inherits(Options, _React$Component4);
 
-var other = new Person();
-console.log(other.getDescription());
+    function Options() {
+        _classCallCheck(this, Options);
 
-var student1 = new Student('Indra Arianggi', 22, 'Informatic Engineering');
-console.log(student1.getDescription());
+        return _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).apply(this, arguments));
+    }
 
-var student2 = new Student();
-console.log(student2.getDescription());
+    _createClass(Options, [{
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "div",
+                null,
+                "Your options:",
+                React.createElement(Option, null)
+            );
+        }
+    }]);
 
-var traveler1 = new Traveler('Indra Arianggi', 22, 'Depok, Indonesia');
-console.log(traveler1.getGreeting());
+    return Options;
+}(React.Component);
 
-var traveler2 = new Traveler(undefined, undefined, 'Nowhere');
-console.log(traveler2.getGreeting());
+var Option = function (_React$Component5) {
+    _inherits(Option, _React$Component5);
+
+    function Option() {
+        _classCallCheck(this, Option);
+
+        return _possibleConstructorReturn(this, (Option.__proto__ || Object.getPrototypeOf(Option)).apply(this, arguments));
+    }
+
+    _createClass(Option, [{
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "div",
+                null,
+                React.createElement(
+                    "ol",
+                    null,
+                    React.createElement(
+                        "li",
+                        null,
+                        "Learn ReactJS."
+                    ),
+                    React.createElement(
+                        "li",
+                        null,
+                        "Sleep."
+                    ),
+                    React.createElement(
+                        "li",
+                        null,
+                        "Workout at gym."
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Option;
+}(React.Component);
+
+var AddOption = function (_React$Component6) {
+    _inherits(AddOption, _React$Component6);
+
+    function AddOption() {
+        _classCallCheck(this, AddOption);
+
+        return _possibleConstructorReturn(this, (AddOption.__proto__ || Object.getPrototypeOf(AddOption)).apply(this, arguments));
+    }
+
+    _createClass(AddOption, [{
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "div",
+                null,
+                React.createElement(
+                    "form",
+                    null,
+                    React.createElement("input", { type: "text", name: "option", placeholder: "type your option here" }),
+                    React.createElement(
+                        "button",
+                        { type: "submit" },
+                        "Submit"
+                    )
+                )
+            );
+        }
+    }]);
+
+    return AddOption;
+}(React.Component);
+
+ReactDOM.render(React.createElement(IndecisionApp, null), document.getElementById('app'));

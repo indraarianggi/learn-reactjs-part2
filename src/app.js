@@ -1,65 +1,74 @@
-
-// JSX - JavaScript XML
-const obj = {
-    title   : 'Learn React from Udemy Course',
-    subtitle: 'By Andrew',
-    options : []
-}
-
-const onFormSubmit = (e) => {
-    e.preventDefault();
-
-    const option = e.target.elements.option.value;
-    if(option) {
-        obj.options.push(option);
-        e.target.elements.option.value = '';
-        
-        // call render function
-        renderView();
+class IndecisionApp extends React.Component {
+    render() {
+        return (
+            <div>
+                <Header />
+                <Action />
+                <Options />
+                <AddOption />
+            </div>
+        );
     }
 }
 
-const removeAll = () => {
-    obj.options = [];
-    renderView();
+class Header extends React.Component {
+    render() {
+        return (
+            <div>
+                <h1>Indecision</h1>
+                <h2>Put your life in the hands of computer</h2>
+            </div>
+        );
+    }
 }
 
-const onMakeDecision = () => {
-    const randomNum = Math.floor(Math.random() * obj.options.length);
-    const option = obj.options[randomNum];
-    alert(option);
+class Action extends React.Component {
+    render() {
+        return (
+            <div>
+                <button>What shoulr I do ?</button>
+            </div>
+        );
+    }
 }
 
-const appRoot = document.getElementById('app');
-
-const renderView = () => {
-    const template = (
-        <div>
-            <h1>{ obj.title }</h1>
-            { obj.subtitle && <p>{ obj.subtitle }</p> }
-            { (obj.options.length > 1) ? 'Here are your options:' : 'No options!' }
-
-            <ol>
-                {
-                    obj.options.map((opt) => {
-                        return <li key={opt}>{opt}</li>
-                    })
-                }
-            </ol>
-
-            <button disabled={obj.options.length == 0} onClick={onMakeDecision}>What should I do ?</button>
-
-            <button onClick={removeAll}>Remove All Options</button>
-    
-            <form onSubmit={onFormSubmit}>
-                <input type="text" name="option"/>
-                <button>Add Option</button>
-            </form>
-        </div>
-    );
-
-    ReactDOM.render(template, appRoot);
+class Options extends React.Component {
+    render() {
+        return (
+            <div>
+                Your options:
+                <Option />
+            </div>
+        );
+    }
 }
 
-// Call render function
-renderView();
+class Option extends React.Component {
+    render() {
+        return (
+            <div>
+                <ol>
+                    <li>Learn ReactJS.</li>
+                    <li>Sleep.</li>
+                    <li>Workout at gym.</li>
+                </ol>
+            </div>
+        );
+    }
+}
+
+class AddOption extends React.Component {
+    render() {
+        return (
+            <div>
+                <form>
+                    <input type="text" name="option" placeholder="type your option here"></input>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        );
+    }
+}
+
+
+ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
