@@ -19,6 +19,7 @@ var IndecisionApp = function (_React$Component) {
         _this.handleDeleteOptions = _this.handleDeleteOptions.bind(_this);
         _this.handlePick = _this.handlePick.bind(_this);
         _this.handleAddOption = _this.handleAddOption.bind(_this);
+        _this.handleDeleteOneOption = _this.handleDeleteOneOption.bind(_this);
 
         _this.state = {
             options: props.options
@@ -33,8 +34,17 @@ var IndecisionApp = function (_React$Component) {
         key: 'handleDeleteOptions',
         value: function handleDeleteOptions() {
             this.setState(function () {
+                return { options: [] };
+            });
+        }
+    }, {
+        key: 'handleDeleteOneOption',
+        value: function handleDeleteOneOption(optionToRemove) {
+            this.setState(function (prevState) {
                 return {
-                    options: []
+                    options: prevState.options.filter(function (option) {
+                        return optionToRemove !== option;
+                    })
                 };
             });
         }
@@ -51,9 +61,7 @@ var IndecisionApp = function (_React$Component) {
             }
 
             this.setState(function (prevState) {
-                return {
-                    options: prevState.options.concat(opt)
-                };
+                return { options: prevState.options.concat(opt) };
             });
         }
 
@@ -81,7 +89,8 @@ var IndecisionApp = function (_React$Component) {
                 }),
                 React.createElement(Options, {
                     options: this.state.options,
-                    handleDeleteOptions: this.handleDeleteOptions
+                    handleDeleteOptions: this.handleDeleteOptions,
+                    handleDeleteOneOption: this.handleDeleteOneOption
                 }),
                 React.createElement(AddOption, {
                     handleAddOption: this.handleAddOption
@@ -155,7 +164,11 @@ var Options = function Options(props) {
             ' options for you to choose:'
         ),
         props.options.map(function (opt) {
-            return React.createElement(Option, { key: opt, optionTxt: opt });
+            return React.createElement(Option, {
+                key: opt,
+                optionTxt: opt,
+                handleDeleteOneOption: props.handleDeleteOneOption
+            });
         })
     );
 };
@@ -165,7 +178,16 @@ var Option = function Option(props) {
     return React.createElement(
         'div',
         null,
-        props.optionTxt
+        props.optionTxt,
+        React.createElement(
+            'button',
+            {
+                onClick: function onClick(e) {
+                    props.handleDeleteOneOption(props.optionTxt);
+                }
+            },
+            'remove'
+        )
     );
 };
 
@@ -193,10 +215,10 @@ var AddOption = function (_React$Component2) {
             var option = e.target.elements.option.value;
             var error = this.props.handleAddOption(option);
 
+            e.target.elements.option.value = '';
+
             this.setState(function () {
-                return {
-                    error: error // shorthand syntax for error: error
-                };
+                return { error: error };
             });
         }
     }, {
