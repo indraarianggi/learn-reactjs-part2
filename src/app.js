@@ -8,7 +8,7 @@ class IndecisionApp extends React.Component {
         this.handleDeleteOneOption = this.handleDeleteOneOption.bind(this);
 
         this.state = {
-            options: props.options
+            options: []
         }
     }
 
@@ -88,11 +88,6 @@ class IndecisionApp extends React.Component {
             </div>
         );
     }
-}
-
-// Default props for IndecisionApp component
-IndecisionApp.defaultProps = {
-    options: []
 }
 
 // Stateless functional component

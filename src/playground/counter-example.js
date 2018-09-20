@@ -8,7 +8,28 @@ class Counter extends React.Component {
 
         // Set up default state value
         this.state = {
-            count: props.count
+            count: 0
+        }
+    }
+
+    // LIFECYCLE METHODS
+    componentDidMount() {
+        try {
+            // load data when page mount/load
+            const c = localStorage.getItem('count');
+            const cParse = parseInt(c);
+
+            if (!isNaN(cParse)) {
+                this.setState(() => ({ count: cParse }));
+            }
+        } catch (e) {
+            // Do nothing at all
+        }
+    }
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.count !== this.state.count) {
+            // saving data
+            localStorage.setItem('count', this.state.count);
         }
     }
 
@@ -49,11 +70,6 @@ class Counter extends React.Component {
             </div>
         );
     }
-}
-
-// Default props for Counter component
-Counter.defaultProps = {
-    count: 0
 }
 
 ReactDOM.render(<Counter count={7} />, document.getElementById('app'));
