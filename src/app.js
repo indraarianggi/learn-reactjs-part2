@@ -7,7 +7,7 @@ class IndecisionApp extends React.Component {
         this.handleAddOption = this.handleAddOption.bind(this);
 
         this.state = {
-            options: []
+            options: props.options
         }
     }
 
@@ -43,12 +43,11 @@ class IndecisionApp extends React.Component {
     }
 
     render() {
-        const title = 'Indecision App';
         const subtitle = 'Put your life in the hands of computer';
 
         return (
             <div>
-                <Header title={title} subtitle={subtitle} />
+                <Header subtitle={subtitle} />
                 <Action 
                     hasOptions={this.state.options.length > 0}
                     handlePick={this.handlePick}
@@ -65,27 +64,25 @@ class IndecisionApp extends React.Component {
     }
 }
 
+// Default props for IndecisionApp component
+IndecisionApp.defaultProps = {
+    options: []
+}
+
 // Stateless functional component
 const Header = (props) => {
     return (
         <div>
             <h1>{props.title}</h1>
-            <h2>{props.subtitle}</h2>
+            {props.subtitle && <h2>{props.subtitle}</h2>}
         </div>
     );
 }
 
-// class Header extends React.Component {
-//     render() {
-//         console.log(this.props);
-//         return (
-//             <div>
-//                 <h1>{this.props.title}</h1>
-//                 <h2>{this.props.subtitle}</h2>
-//             </div>
-//         );
-//     }
-// }
+// Default props for Header component
+Header.defaultProps = {
+    title: 'Indecision App'
+}
 
 // Stateless functional component
 const Action = (props) => {
