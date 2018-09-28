@@ -65,9 +65,61 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_js__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__person__ = __webpack_require__(2);
+// import './utils.js';
+
+
 
 console.log('app.js is running.');
+console.log(__WEBPACK_IMPORTED_MODULE_0__utils_js__["c" /* square */](4));
+console.log(__WEBPACK_IMPORTED_MODULE_0__utils_js__["a" /* add */](100, 1));
+console.log(__WEBPACK_IMPORTED_MODULE_0__utils_js__["b" /* default */](100, 45)); // reference to substract function in utils.js
+
+console.log(__WEBPACK_IMPORTED_MODULE_1__person__["c" /* isAdult */](10) ? 'Hello Man!' : 'Watsuup Kid?');
+console.log(__WEBPACK_IMPORTED_MODULE_1__person__["a" /* canDrive */](17) ? 'Have a nice drive' : 'Sorry, another time kids');
+console.log(__WEBPACK_IMPORTED_MODULE_1__person__["b" /* default */](37) ? 'Masta' : 'Newbie');
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return add; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return square; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return substract; });
+
+console.log('utils.js is running.');
+
+const add = (a, b) => a + b;
+
+const square = (x) => x * x;
+
+const substract = (a, b) => a - b;
+
+
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return isAdult; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return canDrive; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return isSenior; });
+const isAdult = (age) => age >= 18;
+
+const canDrive = (age) => age >= 17;
+
+const isSenior = (age) => age >= 35;
+
+
 
 
 /***/ })
