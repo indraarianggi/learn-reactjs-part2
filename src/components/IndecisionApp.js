@@ -5,10 +5,12 @@ import AddOption from './AddOption';
 import Options from './Options';
 import Action from './Action';
 import Header from './Header';
+import OptionModal from './OptionModal';
 
 export default class IndecisionApp extends React.Component {
     state = {
-        options: []
+        options: [],
+        selectedOption: undefined
     }
 
     // function for delete all options
@@ -37,7 +39,13 @@ export default class IndecisionApp extends React.Component {
     handlePick = () => {
         const randomNum = Math.floor(Math.random() * this.state.options.length);
         const option = this.state.options[randomNum];
-        alert(option);
+        console.log(option);
+        this.setState(() => ({ selectedOption: option }));
+    }
+
+    // clear selected option
+    handleClearOption = () => {
+        this.setState(() => ({ selectedOption: undefined }));
     }
     
     // LIFECYCLE METHODS
@@ -83,6 +91,10 @@ export default class IndecisionApp extends React.Component {
                 />
                 <AddOption
                     handleAddOption={this.handleAddOption}
+                />
+                <OptionModal
+                    selectedOption={this.state.selectedOption}
+                    handleClearOption={this.handleClearOption}
                 />
             </div>
         );
